@@ -22,7 +22,7 @@ export default function Chart() {
       try {
       
         const [originResponse] = await Promise.all([
-          axios.get(`http://localhost:8080/api/employees/origin/${employeeId}`)
+          axios.get(`https://server-back-hdgfc8drf4cfdsdk.canadacentral-01.azurewebsites.net/api/employees/origin/${employeeId}`)
         ]);
  
         // Setting the fetched data
@@ -41,7 +41,7 @@ export default function Chart() {
       try {
        
         const [ employeesResponse] = await Promise.all([
-          axios.get("http://localhost:8080/api/employees")
+          axios.get("https://server-back-hdgfc8drf4cfdsdk.canadacentral-01.azurewebsites.net/api/employees")
         ]);
  
         // Setting the fetched data
@@ -59,7 +59,7 @@ export default function Chart() {
       try {
        
         const [ reportingResponse] = await Promise.all([
-          axios.get(`http://localhost:8080/api/employees/reporting-to/${employeeId}`)
+          axios.get(`https://server-back-hdgfc8drf4cfdsdk.canadacentral-01.azurewebsites.net/api/employees/reporting-to/${employeeId}`)
         ]);
  
         // Setting the fetched data
