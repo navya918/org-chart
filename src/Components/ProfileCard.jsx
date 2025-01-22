@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import {  EnvelopeIcon, PhoneIcon, MapPinIcon, BriefcaseIcon } from "@heroicons/react/24/outline";
+import {  EnvelopeIcon,  MapPinIcon, BriefcaseIcon,UserCircleIcon } from "@heroicons/react/24/outline";
 
 export default function ProfileCard({ employeeId ,employee}) {
   const [employeeData, setEmployeeData] = useState(null);
@@ -9,14 +9,7 @@ export default function ProfileCard({ employeeId ,employee}) {
     const fetchEmployeeData = async () => {
       if (employeeId) {
         try {
-          const token= localStorage.getItem('token');
-          const response = await axios.get(`http://localhost:8080/api/employees/${employeeId}`,{
-            method:'GET',
-            headers:{
-                'Authorization':`Bearer ${token}`,
-                'Content-Type':'application/json'
-            }
-          });
+          const response = await axios.get(`http://localhost:8080/api/employees/${employeeId}`);
           setEmployeeData(response.data);
         } catch (error) {
           console.error('Error fetching employee data:', error);
@@ -36,10 +29,8 @@ export default function ProfileCard({ employeeId ,employee}) {
         <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
   {employeeData.firstName.charAt(0)}
 </div>
-
           <div>
-            <h2 className="text-2xl font-bold text-gray-800">{employeeData.firstName} {employeeData.lastName}</h2>
-          
+            <h2 className="text-2xl font-bold text-gray-800">{employeeData.firstName} {employeeData.lastName}</h2>        
           </div>
         </div>
         <div className="mt-6 space-y-4">
@@ -48,17 +39,14 @@ export default function ProfileCard({ employeeId ,employee}) {
             <span>{employeeData.email}</span>
           </div>
           <div className="flex items-center space-x-3 text-gray-700">
-            <PhoneIcon className="w-5 h-5" />
-            <span>1111111111</span>
-          </div>
-          <div className="flex items-center space-x-3 text-gray-700">
-            <MapPinIcon className="w-5 h-5" />
-            <span>India</span>
-          </div>
-          <div className="flex items-center space-x-3 text-gray-700">
             <BriefcaseIcon className="w-5 h-5" />
             <span>{employeeData.role}</span>
           </div>
+          <div className="flex items-center space-x-3 text-gray-700">
+          <UserCircleIcon className="w-5 h-5" />
+            <span>{employeeData.employeeId}</span>
+          </div>
+          
         </div>
       </div>
     </div>
